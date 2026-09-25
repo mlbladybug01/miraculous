@@ -1,4 +1,4 @@
-# miraculous
+# README
 
 Static site with a login gate and a Leaflet/OpenStreetMap view of a secret pin location, deployed to GitHub Pages via GitHub Actions.
 

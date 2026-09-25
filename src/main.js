@@ -12,8 +12,6 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow,
 })
 
-const SESSION_KEY = 'miraculous_authenticated'
-
 async function sha256Hex(text) {
   const data = new TextEncoder().encode(text)
   const hashBuffer = await crypto.subtle.digest('SHA-256', data)
@@ -27,6 +25,8 @@ const mapView = document.getElementById('map-view')
 const loginForm = document.getElementById('login-form')
 const loginError = document.getElementById('login-error')
 
+const PARIS_BOUNDS = L.latLngBounds([48.815, 2.224], [48.902, 2.470])
+
 function showMap() {
   loginView.hidden = true
   mapView.hidden = false
@@ -35,12 +35,17 @@ function showMap() {
   const lng = parseFloat(import.meta.env.VITE_PIN_LNG)
   const label = import.meta.env.VITE_PIN_LABEL || ''
 
-  const map = L.map('map').setView([lat, lng], 15)
+  const map = L.map('map', {
+    minZoom: 12,
+    maxZoom: 18,
+    maxBounds: PARIS_BOUNDS,
+    maxBoundsViscosity: 1.0,
+  }).setView([lat, lng], 15)
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 19,
+    maxZoom: 18,
   }).addTo(map)
 
   L.marker([lat, lng]).addTo(map).bindPopup(label).openPopup()
@@ -62,13 +67,8 @@ loginForm.addEventListener('submit', async (event) => {
 
   if (validUsername && validPassword) {
     loginError.hidden = true
-    sessionStorage.setItem(SESSION_KEY, 'true')
     showMap()
   } else {
     loginError.hidden = false
   }
 })
-
-if (sessionStorage.getItem(SESSION_KEY) === 'true') {
-  showMap()
-}

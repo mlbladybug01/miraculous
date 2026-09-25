@@ -24,6 +24,10 @@ body {
   align-items: center;
 }
 
+#login-view[hidden] {
+  display: none;
+}
+
 .card {
   background: white;
   padding: 40px;
