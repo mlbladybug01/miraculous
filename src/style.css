@@ -2,16 +2,32 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg: #060b09;
+  --panel: #0e1f18;
+  --accent: #4dffb8;
+  --accent-dim: rgba(77, 255, 184, 0.25);
+  --text: #d9fff0;
+  --error: #ff8080;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Consolas', 'Courier New', monospace;
 }
 
 body {
-  background-color: #f4f7f6;
-  color: #333;
+  background-color: var(--bg);
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.025) 0px,
+    rgba(255, 255, 255, 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  color: var(--text);
 }
 
 .view {
@@ -29,19 +45,13 @@ body {
 }
 
 .card {
-  background: white;
+  background: var(--panel);
   padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--accent);
+  border-radius: 0;
+  box-shadow: 0 0 20px var(--accent-dim);
   width: 100%;
   max-width: 360px;
-}
-
-.card h1 {
-  color: #2c3e50;
-  margin-top: 0;
-  margin-bottom: 25px;
-  text-align: center;
 }
 
 #login-form {
@@ -49,38 +59,46 @@ body {
   flex-direction: column;
 }
 
-#login-form label {
-  font-size: 0.9rem;
-  color: #7f8c8d;
-  margin-bottom: 6px;
+.field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
-#login-form input {
+.field label {
+  flex: 0 0 auto;
+  width: 90px;
+  font-size: 0.85rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.field label::before {
+  content: '> ';
+}
+
+.field input {
+  flex: 1;
+  min-width: 0;
   padding: 10px 12px;
-  margin-bottom: 18px;
-  border: 1px solid #dcdfe1;
-  border-radius: 5px;
+  border: 1px solid var(--accent);
+  border-radius: 0;
+  background: #000;
+  color: var(--text);
+  font-family: inherit;
   font-size: 1rem;
+  caret-color: var(--accent);
 }
 
-#login-form button {
-  padding: 12px 24px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-#login-form button:hover {
-  background-color: #2980b9;
+.field input:focus {
+  outline: none;
+  box-shadow: 0 0 8px var(--accent-dim);
 }
 
 .error {
-  color: #e74c3c;
+  color: var(--error);
   font-size: 0.9rem;
   text-align: center;
   margin-top: 14px;

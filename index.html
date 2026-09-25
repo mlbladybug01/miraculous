@@ -1,31 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bienvenue sur mon site</title>
-</head>
-<body>
-  <div id="login-view" class="view">
-    <div class="card">
-      <h1>Sign in</h1>
-      <form id="login-form" autocomplete="off">
-        <label for="username">Username</label>
-        <input id="username" name="username" type="text" required autocomplete="username" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bienvenue sur mon site</title>
+    </head>
+    <body>
+        <div id="login-view" class="view">
+            <div class="card">
+                <form id="login-form" autocomplete="off">
+                    <div class="field">
+                        <label for="username">Username</label>
+                        <input
+                            id="username"
+                            name="username"
+                            type="text"
+                            required
+                            autocomplete="username"
+                        />
+                    </div>
 
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" required autocomplete="current-password" />
+                    <div class="field">
+                        <label for="password">Password</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            required
+                            autocomplete="current-password"
+                        />
+                    </div>
 
-        <button type="submit">Sign in</button>
-        <p id="login-error" class="error" hidden>Incorrect username or password.</p>
-      </form>
-    </div>
-  </div>
+                    <p id="login-error" class="error" hidden>
+                        Incorrect username or password.
+                    </p>
+                </form>
+            </div>
+        </div>
 
-  <div id="map-view" class="view" hidden>
-    <div id="map"></div>
-  </div>
+        <div id="map-view" class="view" hidden>
+            <div id="map"></div>
+        </div>
 
-  <script type="module" src="/src/main.js"></script>
-</body>
+        <script type="module" src="/src/main.js"></script>
+    </body>
 </html>
