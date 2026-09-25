@@ -1,0 +1,19 @@
+{
+  "name": "miraculous",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5173",
+    "build": "vite build",
+    "preview": "vite preview",
+    "stop": "kill-port 5173"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4"
+  },
+  "devDependencies": {
+    "kill-port": "^2.0.1",
+    "vite": "^6.3.5"
+  }
+}

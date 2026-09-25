@@ -1,60 +1,31 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenue sur mon site</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 500px;
-        }
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #7f8c8d;
-        }
-        .btn {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 12px 24px;
-            background-color: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #2980b9;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenue sur mon site</title>
 </head>
 <body>
+  <div id="login-view" class="view">
+    <div class="card">
+      <h1>Sign in</h1>
+      <form id="login-form" autocomplete="off">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required autocomplete="username" />
 
-    <div class="container">
-        <h1>Welcome</h1>
-        <p>This website is host on GitHub.</p>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required autocomplete="current-password" />
+
+        <button type="submit">Sign in</button>
+        <p id="login-error" class="error" hidden>Incorrect username or password.</p>
+      </form>
     </div>
+  </div>
 
+  <div id="map-view" class="view" hidden>
+    <div id="map"></div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
