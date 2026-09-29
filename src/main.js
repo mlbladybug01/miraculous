@@ -78,8 +78,6 @@ function showMap() {
     marker.off("click").on("click mouseover", () => {
         if (!marker.isPopupOpen()) marker.openPopup();
     });
-
-    marker.openPopup();
 }
 
 loginForm.addEventListener("input", () => {
