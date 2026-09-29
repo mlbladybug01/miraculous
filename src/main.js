@@ -4,6 +4,7 @@ import "leaflet/dist/leaflet.css";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import pinImage from "../medias/wfsqR9zy0.jpg";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -29,6 +30,24 @@ const passwordInput = document.getElementById("password");
 
 const PARIS_BOUNDS = L.latLngBounds([48.815, 2.224], [48.902, 2.47]);
 
+function createPopupContent(label) {
+    const content = document.createElement("div");
+    content.className = "pin-popup";
+
+    const image = document.createElement("img");
+    image.src = pinImage;
+    image.alt = label;
+    content.append(image);
+
+    if (label) {
+        const caption = document.createElement("p");
+        caption.textContent = label;
+        content.append(caption);
+    }
+
+    return content;
+}
+
 function showMap() {
     loginView.hidden = true;
     mapView.hidden = false;
@@ -50,7 +69,17 @@ function showMap() {
         maxZoom: 18,
     }).addTo(map);
 
-    L.marker([lat, lng]).addTo(map).bindPopup(label).openPopup();
+    const marker = L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup(createPopupContent(label), { maxWidth: 280 });
+
+    // bindPopup's own click handler toggles the popup, so the click that follows
+    // a hover would close it again: make both hover and click only open it.
+    marker.off("click").on("click mouseover", () => {
+        if (!marker.isPopupOpen()) marker.openPopup();
+    });
+
+    marker.openPopup();
 }
 
 loginForm.addEventListener("input", () => {
